@@ -1,16 +1,17 @@
-public class SavingsAccount {
+public class SavingsAccount extends Thread{
 
   private long total = 0;
 
-  public boolean withdraw(long amount) {
-      
+  public synchronized boolean withdraw(long amount) {
+      if(total >= amount) total -= amount;
+      return total >= amount;
   }
 
-  public void deposit(long amount) {
-
+  public synchronized void deposit(long amount) {
+        total += amount;
   }
 
-  public long getTotal() {
+  public synchronized long getTotal() {
       return total;
   }
 }
